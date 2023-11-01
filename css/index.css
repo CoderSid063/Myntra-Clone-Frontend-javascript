@@ -234,10 +234,14 @@ header {
 
 .items-container{
     width: 80%;
-    margin: 40px 10%;
+    margin: 30px 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .item-container{
-    width: 250px;
+    width: 150px;
+    margin: 3px 2px;
 }
 .item-image{
     width: 100%;
