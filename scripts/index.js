@@ -1,18 +1,21 @@
-let bagItem = [];
+let bagItem;
 onLoad();
 
 function onLoad(){
+   let bagItemStr = localStorage.getItem('bagItem');
+   bagItem = bagItemStr ? JSON.parse(bagItemStr) : [];
    displayItemsOnHomePage();
-   displayBagItem();
+   displayBagIcon();
 };
 
 
 function addToBag (itemId){
    bagItem.push(itemId);
-   displayBagItem();
+   localStorage.setItem('bagItem',JSON.stringify(bagItem));
+   displayBagIcon();
 };
 
-function displayBagItem () {
+function displayBagIcon () {
    let bagItemCountElement = document.querySelector('.bag-item-count');
    if(bagItem.length > 0){
       bagItemCountElement.style.visibility = 'visible';
@@ -22,9 +25,11 @@ function displayBagItem () {
    }
 };
 
-function displayItemsOnHomePage () {
+function displayItemsOnHomePage() {
    let itemsContainerElement = document.querySelector('.items-container');
-
+   if(!itemsContainerElement){
+      return;
+   }
    let innerHtml ='';
    items.forEach((item) => {
       innerHtml += `
